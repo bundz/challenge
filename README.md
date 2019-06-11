@@ -1,6 +1,6 @@
 # challenge
 
-## Instruction
+## Instructions
 For the challenge I created 4 folder, one for each task.
 To install dependecies run:
 `npm install`
@@ -11,7 +11,7 @@ For each task I developed some tests, you can run them by typing:
 
 ## Task 4
 Here is entity diagram designed for task 4:
-![Entities](./entities.png)
+![Entities](./task4/public/entities.png)
 
 I designed API using ReDoc. So, this task has its own package.json, so before run it install its dependencies.
 Inside task4 folder run:
