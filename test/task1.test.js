@@ -1,7 +1,7 @@
 const { expect } = require(`chai`);
 const rle = require(`../task1/rle`);
 
-describe(`Task1 - run length encoding`, () => {
+describe(`Task #1 - run length encoding`, () => {
   context(`when executing for empty array`, () => {
     it(`should return empty string`, () => {
       expect(rle([])).to.be.equals(``);
