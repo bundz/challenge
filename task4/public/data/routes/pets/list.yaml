@@ -1,0 +1,45 @@
+summary: List Pets
+description: This endpoint returns a paginated list of pets. 
+tags:
+  - Pets
+parameters:
+  - name: type
+    in: query
+    description: Pet type
+    enum: ['puppy', 'kitten']
+    type: string
+  - name: limit
+    in: query
+    description: Number of videos listed
+    type: integer
+    minimum: 0
+    default: 15
+  - name: offset
+    in: query
+    description: Offset for pagination
+    type: integer
+    minimum: 0
+    default: 0
+responses:
+  "200":
+    description: "Response"
+    schema:
+      type: "object"
+      properties:
+        pagination:
+          type: object
+          $ref: "../../../../definitions/pagination.yaml"
+        data:
+          type: "array"
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+                example: Bob
+              type:
+                type: string
+                example: puppy
+              size:
+                type: string
+                example: 'S'

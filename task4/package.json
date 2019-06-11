@@ -1,0 +1,12 @@
+{
+  "name": "pet-rental",
+  "version": "1.0.0",
+  "description": "pet-rental",
+  "author": "pet-rental",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "express": "4.15.2"
+  }
+}

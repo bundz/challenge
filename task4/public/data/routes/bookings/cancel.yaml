@@ -1,0 +1,17 @@
+summary: Cancel booking
+description: Booking id 
+tags:
+  - Bookings
+parameters:
+  - name: id
+    in: params
+    description: pet id
+    type: integer
+responses:
+  "200":
+    description: "Response"
+    schema:
+     properties:
+        data:
+          type: boolean
+          example: true

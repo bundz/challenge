@@ -1,0 +1,73 @@
+summary: List Bookings
+description: This endpoint returns a paginated list of bookings. 
+tags:
+  - Bookings
+parameters:
+  - name: status
+    in: query
+    description: booking status
+    type: string
+  - name: from_date
+    in: query
+    description: date search from
+  - name: to_date
+    in: query
+    description: date search to
+  - name: limit
+    in: query
+    description: Number of videos listed
+    type: integer
+    minimum: 0
+    default: 15
+  - name: offset
+    in: query
+    description: Offset for pagination
+    type: integer
+    minimum: 0
+    default: 0
+responses:
+  "200":
+    description: "Response"
+    schema:
+      type: "object"
+      properties:
+        pagination:
+          type: object
+          $ref: "../../../../definitions/pagination.yaml"
+        data:
+          type: "array"
+          items:
+            type: object
+            properties:
+              id:
+                type: integer
+                example: 1
+              status:
+                type: string
+              pet:
+                type: object
+                properties:
+                  name:
+                    type: string
+                    example: Bob
+                  type:
+                    type: string
+                    example: puppy
+                  size:
+                    type: string
+                    example: 'S'
+              customer:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    example: 1
+                  name:
+                    type: string
+                    example: John Wick
+                  email:
+                    type: string
+                    example: 'john@gmail.com'
+                  phone:
+                    type: string
+                    example: '131628351623'

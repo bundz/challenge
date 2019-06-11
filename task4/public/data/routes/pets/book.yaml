@@ -1,0 +1,35 @@
+summary: Book Pet
+description: Book pet by id
+tags:
+  - Pets
+parameters:
+  - name: id
+    in: params
+    description: pet id
+    type: integer
+  - name: data
+    in: body
+    description: data
+    required: true
+    schema: 
+      type: object
+      properties:
+        customer_id:
+          type: integer
+          example: 1
+        from_date:
+          type: date
+          example: 2019-06-06
+        to_date:
+          type: date
+          example: 2019-07-07
+
+    
+responses:
+  "200":
+    description: "Response"
+    schema:
+     properties:
+        data:
+          type: boolean
+          example: true

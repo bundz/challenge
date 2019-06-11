@@ -1,0 +1,57 @@
+swagger: "2.0"
+info: 
+  version: "1.0.0"
+  title: "Pet Rental API"
+  x-logo:
+    url: 'logo.png'
+    altText: Pet Rental Logo
+tags:
+  - name: Auth
+    description: Auth Endpoints
+  - name: Users
+    description: User Endpoints
+  - name: Pets
+    description: Pets Endpoints
+  - name: Bookings
+    description: Booking Endpoints
+host: "petrental.vm"
+basePath: "/"
+schemes: 
+  - "http"
+consumes: 
+  - "application/json"
+produces: 
+  - "application/json"
+securityDefinitions:
+  BasicAuth:
+    type: basic
+paths:
+  /users:
+    post:
+      $ref: routes/users/create.yaml
+  /auth/login:
+    post:
+      $ref: routes/auth/login.yaml
+  /auth/logout:
+    get:
+      $ref: routes/auth/logout.yaml
+  /pets:
+    get:
+      $ref: routes/pets/list.yaml
+  /pets/{id}/book:
+    post:
+      $ref: routes/pets/book.yaml
+      security:
+        - BasicAuth: []
+  /bookings:
+    get:
+      $ref: routes/bookings/list.yaml
+  /bookings/{id}:
+    delete:
+      $ref: routes/bookings/cancel.yaml
+  /bookings/{id}/{status}:
+    post:
+      $ref: routes/bookings/status.yaml
+  
+  
+  
