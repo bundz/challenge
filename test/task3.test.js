@@ -54,8 +54,7 @@ describe(`Task #3 - visits`, () => {
     context(`when getting all visits`, () => {
       it(`should return an array`, async () => {
         sinon.stub(MotorwayApi.prototype, 'getVisits')
-          .onFirstCall().returns(jsonMock)
-          .onSecondCall().returns({ data: [], total: 9 });
+          .returns(jsonMock);
 
         const result = await getAllVisits();
 

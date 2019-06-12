@@ -11,6 +11,7 @@ For each task I developed some tests, you can run them by typing:
 
 ## Task 4
 Here is entity diagram designed for task 4:
+
 ![Entities](./task4/public/entities.png)
 
 I designed API using ReDoc. So, this task has its own package.json, so before run it install its dependencies.

@@ -2,17 +2,23 @@ const MotorwayApi = require(`./motorway_api`);
 
 module.exports = async () => {
   const client = new MotorwayApi(`https://motorway-challenge-api.herokuapp.com`);
-  const visitors = {}; 
-  let page = 1;
-  let data = [1];
-
   await client.login();
   
-  while(data.length) {
-    data = (await client.getVisits(page++)).data
-    addVisits(visitors, data);
+  const visitors = {}; 
+  let { total } = await client.getVisits(1);
+  let pages = Math.ceil(total / 15);
+  const promises = [];
+
+  while(pages > 0) {
+    promises.push(client.getVisits(pages));
+    pages--;
   }
 
+  const responses = await Promise.all(promises);
+  responses.forEach(response => {
+    addVisits(visitors, response.data)
+  });
+  
   const result = [];
 
   for(visitor in visitors) {
