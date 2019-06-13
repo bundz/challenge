@@ -3,21 +3,19 @@ const MotorwayApi = require(`./motorway_api`);
 module.exports = async () => {
   const client = new MotorwayApi(`https://motorway-challenge-api.herokuapp.com`);
   await client.login();
-  
-  const visitors = {}; 
-  let { total } = await client.getVisits(1);
-  let pages = Math.ceil(total / 15);
-  const promises = [];
 
-  while(pages > 0) {
-    promises.push(client.getVisits(pages));
-    pages--;
+  const visitors = {};
+  let { total } = await client.getVisits(1);
+  let oldTotal, pages, data;
+
+  while(oldTotal != total) {
+    oldTotal = total;
+    pages = Math.ceil(total / 15);
+    data = await getAllVisits(pages, client);
+    total = data.total;
   }
 
-  const responses = await Promise.all(promises);
-  responses.forEach(response => {
-    addVisits(visitors, response.data)
-  });
+  calculateVisits(visitors, data.visits)
   
   const result = [];
 
@@ -31,7 +29,37 @@ module.exports = async () => {
   return result;
 };
 
-function addVisits(result, visits) {
+async function getAllVisits(pages, client) {
+  
+  const promises = [];
+
+  for(let i = 0; i < pages; i++) {
+    promises.push(client.getVisits(i + 1));
+  }
+
+  const response = await Promise.all(promises);
+  
+  let total = 0;
+  const visitsHash = {};
+  visitsArray = [];
+  
+  response.forEach(visits => {
+    if(visits.total > total) {
+      total = visits.total;
+    }
+
+    visits.data.forEach(visit => {
+      if(!visitsHash[visit.id]) {
+        visitsArray.push(visit);
+        visitsHash[visit.id] = true;
+      }
+    });
+  });
+
+  return { total, visits: visitsArray };
+}
+
+function calculateVisits(result, visits) {
   const today = new Date();
 
   for(const visit of visits) {
