@@ -18,7 +18,7 @@
   "homepage": "https://github.com/bundz/challenge#readme",
   "dependencies": {
     "chai": "^4.2.0",
-    "got": "^9.6.0",
+    "got": "^11.8.5",
     "mocha": "^6.1.4",
     "sinon": "^7.3.2"
   }
